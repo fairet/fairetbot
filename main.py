@@ -26,17 +26,20 @@ import json
 
 from discord.ext import commands
 
-#client = commands.Bot(command_prefix=".")
+client = commands.Bot(command_prefix=".")
 
 def main():
-    pass
+    request = str(input("::Enter: "))
+    print(load_from_json(request))
 
 def load_from_json(setting):
     with open("config.json", "r") as file:
-        data = json.load(file)
+        parsed = json.load(file)
         file.close()
     
-    return data[setting]
+    data = parsed["config"][setting]
+    
+    return data
 
 if __name__ == "__main__":
     main()
